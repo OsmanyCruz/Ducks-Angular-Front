@@ -18,6 +18,11 @@ export class DuckGalleryComponent {
   constructor(private duckService: DuckService) {}
  
 
+  fetchImages(number: number) {
+    this.generateRandomImage();
+    this.fetchImagesByNumber(number);
+  }
+
   generateRandomImage() {
     this.duckService.getRandomImage().subscribe(response => {
       this.randomImage = response.url;

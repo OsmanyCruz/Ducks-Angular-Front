@@ -1,8 +1,7 @@
 <!-- src/app/components/duck-gallery/duck-gallery.component.html -->
 <div>
-    <button (click)="generateRandomImage()">Generate Random Duck Image</button>
     <input type="number" #numberInput placeholder="Enter number of images" />
-    <button (click)="fetchImagesByNumber(+numberInput.value)">Get Images</button>
+    <button (click)="fetchImages(+numberInput.value)">Get Images</button>
   
     <div *ngIf="randomImage">
       <h3>Random Duck Image</h3>
