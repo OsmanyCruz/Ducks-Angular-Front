@@ -1,0 +1,19 @@
+.image-wrapper {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 768px) {
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  

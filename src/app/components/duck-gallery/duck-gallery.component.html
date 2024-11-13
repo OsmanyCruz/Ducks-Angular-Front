@@ -1,0 +1,22 @@
+<!-- src/app/components/duck-gallery/duck-gallery.component.html -->
+<div>
+    <button (click)="generateRandomImage()">Generate Random Duck Image</button>
+    <input type="number" #numberInput placeholder="Enter number of images" />
+    <button (click)="fetchImagesByNumber(+numberInput.value)">Get Images</button>
+  
+    <div *ngIf="randomImage">
+      <h3>Random Duck Image</h3>
+      <img [src]="randomImage" alt="Random Duck Image" />
+    </div>
+  
+    <div *ngIf="imageUrls.length > 0">
+      <h3>Duck Images</h3>
+      <div *ngFor="let url of imageUrls" class="image-wrapper">
+        <a [href]="url" target="_blank">
+          <img [src]="url" alt="Duck Image" />
+          <p>{{ url }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  
