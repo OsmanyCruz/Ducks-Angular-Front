@@ -16,7 +16,8 @@ export class DuckService {
      
       var response = this.http.get<{ url: string }>(`${this.apiUrl}/random`).pipe(
         catchError((error) => {
-          return throwError(() => new Error(`Api Error: ${error.message}`));
+          const errorResult = error.status === 500 ? error.error.error : error.message;
+          return throwError(() => new Error(`Api Error: ${errorResult}`));
         })
       );
       return response;
@@ -26,7 +27,9 @@ export class DuckService {
     
       var response = this.http.get<{ urls: string[] }>(`${this.apiUrl}/${number}`).pipe(
         catchError((error) => {
-          return throwError(() => new Error(`Api Error: ${error.message}`));
+          console.log(error);
+          const errorResult = error.status === 500 ? error.error.error : error.message;
+          return throwError(() => new Error(`Api Error: ${errorResult}`));
         })
       );
       return response;
