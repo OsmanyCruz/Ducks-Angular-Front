@@ -1,20 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DuckService {
-  private apiUrl = 'http://localhost:3000/api/ducks';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getRandomImage(): Observable<{ url: string }> {
-    return this.http.get<{ url: string }>(`${this.apiUrl}/random`);
+     
+      var response = this.http.get<{ url: string }>(`${this.apiUrl}/random`).pipe(
+        catchError((error) => {
+          return throwError(() => new Error(`Api Error: ${error.message}`));
+        })
+      );
+      return response;
   }
 
   getImagesByNumber(number: number): Observable<{ urls: string[] }> {
-    return this.http.get<{ urls: string[] }>(`${this.apiUrl}/${number}`);
+    
+      var response = this.http.get<{ urls: string[] }>(`${this.apiUrl}/${number}`).pipe(
+        catchError((error) => {
+          return throwError(() => new Error(`Api Error: ${error.message}`));
+        })
+      );
+      return response;
+   
+   
   }
 }

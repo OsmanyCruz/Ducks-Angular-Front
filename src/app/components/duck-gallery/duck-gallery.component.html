@@ -22,6 +22,10 @@
   <div class="container overflow-hidden text-center">
     <div class="row gy-5">
 
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessageGenerateRandomImage">
+       {{errorMessageGenerateRandomImage}}
+      </div>
+
       <div class="col-12" *ngIf="randomImage">
         <h1 class="display-6">Random Image</h1>
         <div class="p-3"><a [href]="randomImage" target="_blank"><img [src]="randomImage" alt="Random Duck Image"
@@ -36,6 +40,11 @@
 
   <div class="container overflow-hidden text-center">
     <div class="row gy-5">
+
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessageFetchImagesByNumber">
+       {{errorMessageFetchImagesByNumber}}
+       </div>
+
       <h1 class="display-6" *ngIf="imageUrls.length > 0">Ducks Images</h1>
       <div class="col-3" *ngFor="let url of imageUrls">
         <div class="p-3"><a [href]="url" target="_blank"><img [src]="url" alt="[href]='url'" class="rounded"></a></div>
